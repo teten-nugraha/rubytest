@@ -3,21 +3,21 @@ def scandir(path)
   jmlFile = 0
   Dir.entries(path).select {|f| 
     # p f if  !File.directory? f
-
+    # p f
     # save ke array
-    if (File.directory?(f))
-        p "#{f} adalah file"
-        folder << f
-    else
-      p "#{f} adalah folder"
-      jmlFile +=1
-    end
+    # if (File.directory?(f))
+    #     p "#{f} adalah file"
+    #     folder << f
+    # else
+    #   p "#{f} adalah folder"
+    #   jmlFile +=1
+    # end
 
   }
 
-  p "jumlah folder #{folder.size}"
-  p "jumlah file  #{jmlFile}"
-  print folder
+  # p "jumlah folder #{folder.size}"
+  # p "jumlah file  #{jmlFile}"
+  # print folder
 end
 
 def coba2(path)
@@ -49,4 +49,4 @@ def get_path_content(dir)
 end
 
 path = 'test'
-coba2(path)
+scandir(path)

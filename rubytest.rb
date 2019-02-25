@@ -1,11 +1,18 @@
 require "pathname"
 
+$folder = Array.new
+$jmlFile = 0
 def rec_path(path, file= false)
-    puts path
+    # puts path
+    
     path.children.collect do |child|
+      # p "child #{child}"
       if file and child.file?
         child
+        $jmlFile +=1
       elsif child.directory?
+        p child
+        $folder << child
         rec_path(child, file) + [child]
       end
     end.select { |x| x }.flatten(1)
@@ -13,6 +20,10 @@ end
 
 def coba3(path)
     p Dir["#{path}/**/**/"]
+end
+
+def countFiles(folder)
+  p Dir["#{folder}/**/*"].length
 end
 
 def scandir(path)
@@ -41,10 +52,17 @@ def scandir(path)
     
 end
 
-path = 'C:\Users\nuna\Documents\RUBY-DEV\test'
-coba3(path)
+# path = 'C:\Users\nuna\Documents\RUBY-DEV\DropsuiteTest'
+print "Input Path: "
+input = gets.strip
+# coba3(path)
 # scandir(path)
 # only directories
 # rec_path(Pathname.new(path), false)
 # directories and normal files
-# rec_path(Pathname.new(path), true)
+rec_path(Pathname.new("DropsuiteTest"), true)
+# coba4(path)
+# coba4(DropsuiteTest)
+# $folder.map{|str| str.split.last} #=> ["1","2","3"]
+p $folder
+p $jmlFile
