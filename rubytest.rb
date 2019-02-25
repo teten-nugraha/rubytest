@@ -3,15 +3,12 @@ require "pathname"
 $folder = Array.new
 $jmlFile = 0
 def rec_path(path, file= false)
-    # puts path
     
     path.children.collect do |child|
-      # p "child #{child}"
       if file and child.file?
         child
         $jmlFile +=1
       elsif child.directory?
-        p child
         $folder << child
         rec_path(child, file) + [child]
       end
@@ -55,14 +52,10 @@ end
 # path = 'C:\Users\nuna\Documents\RUBY-DEV\DropsuiteTest'
 print "Input Path: "
 input = gets.strip
-# coba3(path)
-# scandir(path)
-# only directories
-# rec_path(Pathname.new(path), false)
-# directories and normal files
-rec_path(Pathname.new("DropsuiteTest"), true)
-# coba4(path)
-# coba4(DropsuiteTest)
-# $folder.map{|str| str.split.last} #=> ["1","2","3"]
-p $folder
+rec_path(Pathname.new(input), true)
+i=0
+while i<$folder.length
+  puts $folder[i]
+  i = i+1
+end
 p $jmlFile
